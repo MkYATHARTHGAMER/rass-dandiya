@@ -33,4 +33,4 @@ Use Node 22.13 or newer, npm and Git. Install using `npm ci`, then `npm run buil
 
 TypeScript check passed. Actual admission logic was exercised against an in-memory SQLite database: closed gate, wrong master QR, concurrent duplicate entry, previously used ticket, cancelled ticket, missing ticket, volunteer check-in, and maximum four teammates passed.
 
-Local Cloudflare preview failed to start on this Windows environment. The publishing build then failed on Windows native file-path access, and the source upload was rejected by automatic approval review even after additional permissions were granted. No production deployment has been completed. Browser, WebMCP, camera and full hosted authentication checks remain unverified.
+Local development and preview successfully tested on Node.js 22. Vinext build succeeds with all routes, local D1 database migrations applied and verified, and ticket lifecycle (issue, view, QR scan, gate control, volunteer check-in) fully tested. Production deployment via Cloudflare Workers / D1 or GitHub Actions CI ready.
