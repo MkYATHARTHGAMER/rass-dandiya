@@ -1,5 +1,7 @@
 {
   "d1": "DB",
   "r2": null,
-  "project_id": "appgprj_6ac79f30e3c88191a1f537f4d6f41167"
+  "project_id": "appgprj_6ac79f30e3c88191a1f537f4d6f41167",
+  "database_id": "cc309f11-83bc-4cfd-aaf0-b56887f7fe16",
+  "database_name": "rass-dandiya-db"
 }

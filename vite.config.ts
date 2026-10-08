@@ -21,8 +21,8 @@ const localBindingConfig = {
     ? [
         {
           binding: d1,
-          database_name: process.env.D1_DATABASE_NAME || (hostingConfig as Record<string, any>).database_name || "site-creator-d1",
-          database_id: process.env.D1_DATABASE_ID || (hostingConfig as Record<string, any>).database_id || SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+          database_name: process.env.D1_DATABASE_NAME || (hostingConfig as Record<string, any>).database_name || "rass-dandiya-db",
+          database_id: process.env.D1_DATABASE_ID || (hostingConfig as Record<string, any>).database_id || "cc309f11-83bc-4cfd-aaf0-b56887f7fe16",
         },
       ]
     : [],
