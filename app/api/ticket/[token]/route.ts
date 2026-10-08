@@ -1,0 +1,4 @@
+import {db,json,failure,body} from '@/lib/server';
+import {admit,AppError} from '@/lib/ticket-service';
+export async function GET(_req:Request,ctx:{params:Promise<{token:string}>}){try{const {token}=await ctx.params;const ticket=await db().prepare('SELECT token,name,cancelled,entered_at,receipt FROM tickets WHERE token=?').bind(token).first();if(!ticket)throw new AppError('Ticket not found. Check the full link with your organiser.',404);const event=await db().prepare('SELECT name,date,venue,gate_open FROM event WHERE id=1').first();return json({ticket,event})}catch(e){return failure(e)}}
+export async function POST(req:Request,ctx:{params:Promise<{token:string}>}){try{const {token}=await ctx.params;const b=await body(req);return json({ticket:await admit(db(),token,typeof b.gate==='string'?b.gate:null,null)})}catch(e){return failure(e)}}
