@@ -1,14 +1,9 @@
 import vinext from "vinext";
 import { defineConfig } from "vite";
-import hostingConfig from "./.openai/hosting.json";
 import { readExecutionProfile } from "./scripts/execution-profile.mjs";
 import { sites } from "./build/sites-vite-plugin";
 import { connectorPreview } from "./build/connector-preview-plugin.mjs";
 
-const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
-  "00000000-0000-4000-8000-000000000000";
-
-const { d1, r2 } = hostingConfig;
 
 // macOS Seatbelt blocks FSEvents, so Codex previews need polling for HMR.
 const isCodexSeatbeltSandbox = process.env.CODEX_SANDBOX === "seatbelt";
@@ -17,24 +12,6 @@ const managedLinux = readExecutionProfile() === "managed-linux";
 const localBindingConfig = {
   main: "./build/sites-worker.ts",
   compatibility_flags: ["nodejs_compat"],
-  d1_databases: d1
-    ? [
-        {
-          binding: d1,
-          database_name: process.env.D1_DATABASE_NAME || (hostingConfig as Record<string, any>).database_name || "rass-dandiya-db",
-          database_id: process.env.D1_DATABASE_ID || (hostingConfig as Record<string, any>).database_id || "cc309f11-83bc-4cfd-aaf0-b56887f7fe16",
-          preview_database_id: process.env.D1_DATABASE_ID || (hostingConfig as Record<string, any>).database_id || "cc309f11-83bc-4cfd-aaf0-b56887f7fe16",
-        },
-      ]
-    : [],
-  r2_buckets: r2
-    ? [
-        {
-          binding: r2,
-          bucket_name: "site-creator-r2",
-        },
-      ]
-    : [],
 };
 
 export default defineConfig(async ({ command }) => {
